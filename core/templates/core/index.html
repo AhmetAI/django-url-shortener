@@ -1,0 +1,116 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-2"></div>
+
+            <div class="col-md-8">
+                <div class="row mt-3">
+                    <div class="col">
+
+                        <div class="text-center" style="margin-top: 0px;">
+                            <label class="form-label h1" style="color: #0186da"> <b> <i class="bi bi-link-45deg"></i>Shorten This Link </b></label>
+                        </div>
+                        
+                        <div class="card" style="margin-top: 50px;">
+                            <div class="card-body">
+                                <form method="POST" action="">
+                                    {% csrf_token %}
+                                    <div class="text-center mb-1">
+                                        <label class="form-label h5"><b>Paste the URL to be shortened</b></label>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-lg" id="link" name="link" placeholder="Enter link here" {% if link %} value="{{link}}" {% endif %} required>
+                                        <button class="btn btn-primary">Shorten!</button>
+                                        {% if error_message %}
+                                        <div class="alert alert-primary">{{error_message}}</div>
+                                        {% endif %}
+                                    </div>
+                                </form>
+                                {% if shorten_url %}
+                                <hr>
+                                <div class="text-center mt-3">
+                                    <label class="form-label h5"><b>Your shortened URL</b></label>
+                                </div>
+                                <div class="card mt-2">
+                                    <div class="input-group">
+                                        <!-- Replace 127.0.0.1:8000/ with your own site URL -->
+                                        <input value="127.0.0.1:8000/{{shorten_url}}" id="shorten_url" target="_blank" class="form-control"/>
+                                        <button class="btn btn-primary" id="copyButton" onclick="copyText()">Copy</button>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="text-center" style="margin-top: 30px;">
+                            <label class="form-label h1" style="color: #0186da">Why Shortened Links?</label>
+                        </div>
+                        
+                        <div class="row mb-5">
+                            <div class="card mt-3 d-flex justify-content-start" style="width: 20rem;">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-center">
+                                        <i class="bi bi-award-fill h1" style="color: #0186da"></i>
+                                    </div>
+                                    <h4 class="card-title text-center">Aesthetic and Usability</h4>
+                                    <p class="card-text text-center" style="font-size: 15px;">Long URLs can be complex and difficult to understand. Shortened links provide a cleaner, shorter, and more understandable appearance. Users find it easier to remember and share such links.</p>
+                                </div>
+                            </div>
+                            
+
+                            <div class="card mt-3 d-flex justify-content-end" style="width: 20rem; margin-left: auto;">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-center">
+                                        <i class="bi bi-shield-shaded h1" style="color: #0186da"></i>
+                                    </div>
+                                    <h4 class="card-title text-center">Security and Privacy</h4>
+                                    <p class="card-text text-center" style="font-size: 15px;">Shortened links can also provide advantages in terms of security and privacy. They can conceal special parameters or personal information in original URLs and protect users from malicious websites.</p>
+                                </div>
+                            </div>
+                            
+                            
+                            
+
+                        </div>
+                        
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+
+{% block js_files %}
+
+<script>
+
+
+    function copyText() {
+        var input = document.getElementById("shorten_url");
+        input.select();
+        input.setSelectionRange(0, 99999); // Metni seç
+        document.execCommand("copy"); // Kopyala
+  
+        var button = document.getElementById("copyButton");
+        var originalText = button.innerHTML;
+  
+        // Yazıyı "Copied" olarak değiştir
+        button.innerHTML = "Copied";
+  
+        // 2 saniye sonra eski haline döndür
+        setTimeout(function() {
+          button.innerHTML = originalText;
+        }, 2000);
+      }
+</script>
+
+{% endblock js_files %}
