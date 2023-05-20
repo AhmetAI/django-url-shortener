@@ -1,7 +1,7 @@
 # URL Shortener
 #### **A simple Django based URL shortening web app.**
 
-![ShortenThisLink](https://github.com/AhmetAI/django-url-shortener/assets/49074377/bb6ceeb1-896d-48e2-b656-5d330c8abb8e)
+![ShortenThisLink](https://github.com/AhmetAI/django-url-shortener/assets/49074377/ebb5af10-f222-47be-a677-3a5343db27c8)
 
 # Setup
 Let's start with the Django installation first.
