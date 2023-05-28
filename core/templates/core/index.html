@@ -71,8 +71,6 @@
                                 </div>
                             </div>
                             
-                            
-                            
 
                         </div>
                         
@@ -97,16 +95,14 @@
     function copyText() {
         var input = document.getElementById("shorten_url");
         input.select();
-        input.setSelectionRange(0, 99999); // Metni seç
-        document.execCommand("copy"); // Kopyala
+        input.setSelectionRange(0, 99999);
+        document.execCommand("copy");
   
         var button = document.getElementById("copyButton");
         var originalText = button.innerHTML;
   
-        // Yazıyı "Copied" olarak değiştir
         button.innerHTML = "Copied";
   
-        // 2 saniye sonra eski haline döndür
         setTimeout(function() {
           button.innerHTML = originalText;
         }, 2000);
